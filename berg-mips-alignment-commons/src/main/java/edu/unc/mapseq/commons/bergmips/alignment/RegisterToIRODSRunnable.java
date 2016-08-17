@@ -105,7 +105,7 @@ public class RegisterToIRODSRunnable implements Runnable {
 
                     try {
                         Collection<ServiceReference<WorkflowBeanService>> references = bundleContext.getServiceReferences(WorkflowBeanService.class,
-                                "(osgi.service.blueprint.compname=GSAlignmentWorkflowBeanService)");
+                                "(osgi.service.blueprint.compname=BergMIPsAlignmentWorkflowBeanService)");
 
                         if (CollectionUtils.isNotEmpty(references)) {
                             for (ServiceReference<WorkflowBeanService> sr : references) {
@@ -143,7 +143,7 @@ public class RegisterToIRODSRunnable implements Runnable {
                             return;
                         }
 
-                        String irodsDirectory = String.format("/MedGenZone/%s/sequencing/gs/analysis/%s/%s/%s",
+                        String irodsDirectory = String.format("/MedGenZone/%s/sequencing/bergmips/analysis/%s/%s/%s",
                                 workflowRun.getWorkflow().getSystem().getValue(), sample.getFlowcell().getName(), sample.getName(),
                                 workflowRun.getWorkflow().getName());
 
@@ -155,7 +155,7 @@ public class RegisterToIRODSRunnable implements Runnable {
                         commandInput.setExitImmediately(Boolean.FALSE);
                         StringBuilder sb = new StringBuilder();
                         sb.append(String.format("$IRODS_HOME/imkdir -p %s%n", irodsDirectory));
-                        sb.append(String.format("$IRODS_HOME/imeta add -C %s Project GeneScreen%n", irodsDirectory));
+                        sb.append(String.format("$IRODS_HOME/imeta add -C %s Project BergMIPs%n", irodsDirectory));
                         commandInput.setCommand(sb.toString());
                         commandInput.setWorkDir(tmpDir);
                         commandInputList.add(commandInput);
@@ -223,7 +223,7 @@ public class RegisterToIRODSRunnable implements Runnable {
                             commandInput.setExitImmediately(Boolean.FALSE);
                             sb = new StringBuilder();
                             for (ImmutablePair<String, String> attribute : bean.getAttributes()) {
-                                sb.append(String.format("$IRODS_HOME/imeta add -d %s/%s %s %s GeneScreen%n", irodsDirectory, bean.getFile().getName(),
+                                sb.append(String.format("$IRODS_HOME/imeta add -d %s/%s %s %s BergMIPs%n", irodsDirectory, bean.getFile().getName(),
                                         attribute.getLeft(), attribute.getRight()));
                             }
                             commandInput.setCommand(sb.toString());

@@ -7,15 +7,15 @@
   <reference id="BergMIPsAlignmentWorkflowBeanService" interface="edu.unc.mapseq.workflow.WorkflowBeanService" component-name="BergMIPsAlignmentWorkflowBeanService" />
 
   <bean id="BergMIPsAlignmentMessageListener" class="edu.unc.mapseq.messaging.bergmips.alignment.BergMIPsAlignmentMessageListener">
-    <property name="workflowBeanService" ref="GSAlignmentWorkflowBeanService" />
-    <property name="workflowName" value="GSAlignment" />
+    <property name="workflowBeanService" ref="BergMIPsAlignmentWorkflowBeanService" />
+    <property name="workflowName" value="BergMIPsAlignment" />
   </bean>
 
   <bean id="BergMIPsAlignmentMessageService" class="edu.unc.mapseq.messaging.bergmips.alignment.BergMIPsAlignmentMessageService" init-method="start"
     destroy-method="stop" activation="eager">
     <property name="connectionFactory" ref="connectionFactory" />
-    <property name="messageListener" ref="GSAlignmentMessageListener" />
-    <property name="destinationName" value="queue/gs.alignment" />
+    <property name="messageListener" ref="BergMIPsAlignmentMessageListener" />
+    <property name="destinationName" value="queue/bergmips.alignment" />
   </bean>
 
 </blueprint>

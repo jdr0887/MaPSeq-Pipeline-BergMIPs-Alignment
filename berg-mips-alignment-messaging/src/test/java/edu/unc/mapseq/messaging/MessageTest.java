@@ -40,7 +40,7 @@ public class MessageTest {
         try {
             connection = connectionFactory.createConnection();
             session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-            Destination destination = session.createQueue("queue/gs.alignment");
+            Destination destination = session.createQueue("queue/bergmips.alignment");
             MessageProducer producer = session.createProducer(destination);
             producer.setDeliveryMode(DeliveryMode.PERSISTENT);
 
@@ -113,7 +113,7 @@ public class MessageTest {
         try {
             connection = connectionFactory.createConnection();
             session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-            Destination destination = session.createQueue("queue/gs.alignment");
+            Destination destination = session.createQueue("queue/bergmips.alignment");
             MessageProducer producer = session.createProducer(destination);
             producer.setDeliveryMode(DeliveryMode.PERSISTENT);
             String format = "{\"entities\":[{\"entityType\":\"Sample\",\"id\":\"%s\"},{\"entityType\":\"WorkflowRun\",\"name\":\"%s-%s\"}]}";
@@ -123,7 +123,7 @@ public class MessageTest {
 
             while ((line = br.readLine()) != null) {
                 producer.send(session.createTextMessage(
-                        String.format(format, line.trim(), "jdr-test-gs-alignment", DateFormatUtils.ISO_TIME_NO_T_FORMAT.format(new Date()))));
+                        String.format(format, line.trim(), "jdr-test-bergmips-alignment", DateFormatUtils.ISO_TIME_NO_T_FORMAT.format(new Date()))));
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -169,7 +169,7 @@ public class MessageTest {
         try {
             connection = connectionFactory.createConnection();
             session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-            Destination destination = session.createQueue("queue/gs.alignment");
+            Destination destination = session.createQueue("queue/bergmips.alignment");
             MessageProducer producer = session.createProducer(destination);
             producer.setDeliveryMode(DeliveryMode.PERSISTENT);
             String format = "{\"entities\":[{\"entityType\":\"Sample\",\"id\":\"%d\"},{\"entityType\":\"WorkflowRun\",\"name\":\"%s_L%d_%s_BWA\"}]}";

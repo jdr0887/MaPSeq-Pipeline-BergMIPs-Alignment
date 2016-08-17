@@ -54,7 +54,7 @@ public class RunWorkflowAction implements Action {
         try {
             connection = connectionFactory.createConnection();
             session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-            Destination destination = session.createQueue("queue/gs.alignment");
+            Destination destination = session.createQueue("queue/bergmips.alignment");
             MessageProducer producer = session.createProducer(destination);
             producer.setDeliveryMode(DeliveryMode.PERSISTENT);
             StringWriter sw = new StringWriter();
