@@ -1,0 +1,3 @@
+edu.unc.mapseq.commands.bergmips.alignment.RegisterToIRODSAction
+edu.unc.mapseq.commands.bergmips.alignment.RunWorkflowAction
+edu.unc.mapseq.commands.bergmips.alignment.SaveCollectHsMetricsAttributesAction

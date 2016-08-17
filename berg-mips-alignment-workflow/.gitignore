@@ -1,0 +1,7 @@
+.classpath
+.project
+.settings
+src/main/resources/edu/unc/mapseq/workflow/gs/alignment/workflow.properties
+target
+tmp
+var

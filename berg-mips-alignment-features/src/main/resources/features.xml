@@ -1,0 +1,16 @@
+<features name="mapseq-pipeline-berg-mips-alignment-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.2.0">
+
+  <feature name="mapseq-pipeline-berg-mips-alignment" version="${project.version}" resolver="(obr)">
+    <bundle>mvn:edu.unc.mapseq.pipelines.berg-mips-alignment/berg-mips-alignment-commons/${project.version}</bundle>
+    <bundle>mvn:edu.unc.mapseq.pipelines.berg-mips-alignment/berg-mips-alignment-workflow/${project.version}</bundle>
+    <bundle>mvn:edu.unc.mapseq.pipelines.berg-mips-alignment/berg-mips-alignment-commands/${project.version}</bundle>
+    <bundle start-level="100">mvn:edu.unc.mapseq.pipelines.berg-mips-alignment/berg-mips-alignment-executor/${project.version}</bundle>
+    <bundle start-level="100">mvn:edu.unc.mapseq.pipelines.berg-mips-alignment/berg-mips-alignment-messaging/${project.version}</bundle>
+  </feature>
+
+</features>
+
+
+
+
+

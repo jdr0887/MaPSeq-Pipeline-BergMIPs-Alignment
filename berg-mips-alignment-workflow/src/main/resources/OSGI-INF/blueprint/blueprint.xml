@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0" default-activation="lazy">
+
+  <cm:property-placeholder persistent-id="edu.unc.mapseq.workflow.bergmips.alignment" update-strategy="reload">
+    <cm:default-properties>
+      <cm:property name="corePoolSize" value="100" />
+      <cm:property name="maxPoolSize" value="100" />
+      <cm:property name="siteName" value="Hatteras" />
+      <cm:property name="readGroupPlatform" value="Illumina" />
+      <!-- <cm:property name="referenceSequence" value="$BERGMIPSALIGNMENT_REFERENCES_DIRECTORY/BUILD.38/BUILD.38.p7.plusM.sorted.shortid.Ymasked.fa" 
+        /> -->
+      <!-- <cm:property name="baitIntervalList" value="$BERGMIPSALIGNMENT_RESOURCES_DIRECTORY/intervals/gs/GS_439_Target_Intervals_build38.interval_list" 
+        /> -->
+      <!-- <cm:property name="targetIntervalList" value="$BERGMIPSALIGNMENT_RESOURCES_DIRECTORY/intervals/gs/GS_439_Target_Intervals_build38.interval_list" 
+        /> -->
+      <cm:property name="referenceSequence" value="$BERGMIPSALIGNMENT_REFERENCES_DIRECTORY/BUILD.37.1/BUILD.37.1.plusM.sorted.shortid.fa" />
+      <cm:property name="baitIntervalList" value="$BERGMIPSALIGNMENT_RESOURCES_DIRECTORY/intervals/gs/GS_439_Target_Intervals_build37.interval_list" />
+      <cm:property name="targetIntervalList" value="$BERGMIPSALIGNMENT_RESOURCES_DIRECTORY/intervals/gs/GS_439_Target_Intervals_build37.interval_list" />
+    </cm:default-properties>
+  </cm:property-placeholder>
+
+  <reference id="maPSeqConfigurationService" interface="edu.unc.mapseq.config.MaPSeqConfigurationService" />
+  <reference id="maPSeqDAOBeanService" interface="edu.unc.mapseq.dao.MaPSeqDAOBeanService" />
+
+  <bean id="BergMIPsAlignmentWorkflowBeanService" class="edu.unc.mapseq.workflow.core.WorkflowBeanServiceImpl">
+    <property name="corePoolSize" value="${corePoolSize}" />
+    <property name="maxPoolSize" value="${maxPoolSize}" />
+    <property name="maPSeqConfigurationService" ref="maPSeqConfigurationService" />
+    <property name="maPSeqDAOBeanService" ref="maPSeqDAOBeanService" />
+    <property name="attributes">
+      <map>
+        <entry key="siteName" value="${siteName}" />
+        <entry key="referenceSequence" value="${referenceSequence}" />
+        <entry key="baitIntervalList" value="${baitIntervalList}" />
+        <entry key="targetIntervalList" value="${targetIntervalList}" />
+        <entry key="readGroupPlatform" value="${readGroupPlatform}" />
+      </map>
+    </property>
+    <cm:managed-properties persistent-id="edu.unc.mapseq.workflow.gs.alignment" update-strategy="container-managed" />
+  </bean>
+
+  <service ref="BergMIPsAlignmentWorkflowBeanService" interface="edu.unc.mapseq.workflow.WorkflowBeanService" />
+
+</blueprint>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0" default-activation="eager">
+
+  <cm:property-placeholder persistent-id="edu.unc.mapseq.executor.bergmips.alignment" update-strategy="reload">
+    <cm:default-properties>
+      <cm:property name="period" value="5" />
+    </cm:default-properties>
+  </cm:property-placeholder>
+
+  <reference id="BergMIPsAlignmentWorkflowBeanService" interface="edu.unc.mapseq.workflow.WorkflowBeanService" component-name="BergMIPsAlignmentWorkflowBeanService" />
+
+  <bean id="task" class="edu.unc.mapseq.executor.bergmips.alignment.BergMIPsAlignmentWorkflowExecutorTask">
+    <property name="workflowBeanService" ref="BergMIPsAlignmentWorkflowBeanService" />
+    <property name="workflowName" value="BergMIPsAlignment" />
+  </bean>
+
+  <bean id="BergMIPsAlignmentWorkflowExecutorService" class="edu.unc.mapseq.executor.bergmips.alignment.BergMIPsAlignmentWorkflowExecutorService"
+    init-method="start" destroy-method="stop" activation="eager">
+    <property name="task" ref="task" />
+    <property name="period" value="${period}" />
+    <cm:managed-properties persistent-id="edu.unc.mapseq.executor.bergmips.alignment" update-strategy="container-managed" />
+  </bean>
+
+</blueprint>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0" default-activation="eager">
+
+  <reference id="connectionFactory" interface="javax.jms.ConnectionFactory" />
+
+  <reference id="BergMIPsAlignmentWorkflowBeanService" interface="edu.unc.mapseq.workflow.WorkflowBeanService" component-name="BergMIPsAlignmentWorkflowBeanService" />
+
+  <bean id="BergMIPsAlignmentMessageListener" class="edu.unc.mapseq.messaging.bergmips.alignment.BergMIPsAlignmentMessageListener">
+    <property name="workflowBeanService" ref="GSAlignmentWorkflowBeanService" />
+    <property name="workflowName" value="GSAlignment" />
+  </bean>
+
+  <bean id="BergMIPsAlignmentMessageService" class="edu.unc.mapseq.messaging.bergmips.alignment.BergMIPsAlignmentMessageService" init-method="start"
+    destroy-method="stop" activation="eager">
+    <property name="connectionFactory" ref="connectionFactory" />
+    <property name="messageListener" ref="GSAlignmentMessageListener" />
+    <property name="destinationName" value="queue/gs.alignment" />
+  </bean>
+
+</blueprint>
