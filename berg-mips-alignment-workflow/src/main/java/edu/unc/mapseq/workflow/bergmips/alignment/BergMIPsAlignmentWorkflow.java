@@ -32,6 +32,7 @@ import edu.unc.mapseq.module.sequencing.fastqc.IgnoreLevelType;
 import edu.unc.mapseq.module.sequencing.picard.PicardSortOrderType;
 import edu.unc.mapseq.module.sequencing.picard2.PicardAddOrReplaceReadGroupsCLI;
 import edu.unc.mapseq.module.sequencing.picard2.PicardCollectHsMetricsCLI;
+import edu.unc.mapseq.module.sequencing.samtools.SAMToolsIndexCLI;
 import edu.unc.mapseq.workflow.WorkflowException;
 import edu.unc.mapseq.workflow.sequencing.AbstractSequencingWorkflow;
 import edu.unc.mapseq.workflow.sequencing.SequencingWorkflowJobFactory;
@@ -162,6 +163,17 @@ public class BergMIPsAlignmentWorkflow extends AbstractSequencingWorkflow {
                 logger.info(picardAddOrReplaceReadGroupsJob.toString());
                 graph.addVertex(picardAddOrReplaceReadGroupsJob);
                 graph.addEdge(bwaMemJob, picardAddOrReplaceReadGroupsJob);
+
+                // new job
+                builder = SequencingWorkflowJobFactory.createJob(++count, SAMToolsIndexCLI.class, attempt.getId(), sample.getId())
+                        .siteName(siteName);
+                File picardAddOrReplaceReadGroupsIndexOut = new File(workflowDirectory, fixRGOutput.getName().replace(".bam", ".bai"));
+                builder.addArgument(SAMToolsIndexCLI.INPUT, fixRGOutput.getAbsolutePath()).addArgument(SAMToolsIndexCLI.OUTPUT,
+                        picardAddOrReplaceReadGroupsIndexOut.getAbsolutePath());
+                CondorJob samtoolsIndexJob = builder.build();
+                logger.info(samtoolsIndexJob.toString());
+                graph.addVertex(samtoolsIndexJob);
+                graph.addEdge(picardAddOrReplaceReadGroupsJob, samtoolsIndexJob);
 
                 // new job
                 builder = SequencingWorkflowJobFactory.createJob(++count, RemoveCLI.class, attempt.getId(), sample.getId()).siteName(siteName);
