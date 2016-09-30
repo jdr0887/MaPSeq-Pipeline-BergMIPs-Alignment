@@ -53,8 +53,8 @@ public class BergMIPsAlignmentWorkflow extends AbstractSequencingWorkflow {
         DirectedGraph<CondorJob, CondorJobEdge> graph = new DefaultDirectedGraph<CondorJob, CondorJobEdge>(CondorJobEdge.class);
 
         int count = 0;
-
-        Set<Sample> sampleSet = getAggregatedSamples();
+        Set<Sample> sampleSet = SequencingWorkflowUtil.getAggregatedSamples(getWorkflowBeanService().getMaPSeqDAOBeanService(),
+                getWorkflowRunAttempt());
         logger.info("sampleSet.size(): {}", sampleSet.size());
 
         String siteName = getWorkflowBeanService().getAttributes().get("siteName");
@@ -209,7 +209,8 @@ public class BergMIPsAlignmentWorkflow extends AbstractSequencingWorkflow {
     public void postRun() throws WorkflowException {
         logger.debug("ENTERING postRun()");
 
-        Set<Sample> sampleSet = getAggregatedSamples();
+        Set<Sample> sampleSet = SequencingWorkflowUtil.getAggregatedSamples(getWorkflowBeanService().getMaPSeqDAOBeanService(),
+                getWorkflowRunAttempt());
 
         try {
             ExecutorService es = Executors.newSingleThreadExecutor();
