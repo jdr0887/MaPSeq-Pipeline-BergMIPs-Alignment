@@ -2,13 +2,13 @@
  <parent>
   <groupId>edu.unc.mapseq.pipelines</groupId>
   <artifactId>berg-mips-alignment</artifactId>
-  <version>0.6.4-SNAPSHOT</version>
+  <version>0.6.4</version>
  </parent>
  <name>MaPSeq :: Pipelines :: BergMIPs :: Alignment :: Executor</name>
  <modelVersion>4.0.0</modelVersion>
  <groupId>edu.unc.mapseq.pipelines.berg-mips-alignment</groupId>
  <artifactId>berg-mips-alignment-executor</artifactId>
- <version>0.6.4-SNAPSHOT</version>
+ <version>0.6.4</version>
  <packaging>bundle</packaging>
  <dependencies>
   <dependency>
