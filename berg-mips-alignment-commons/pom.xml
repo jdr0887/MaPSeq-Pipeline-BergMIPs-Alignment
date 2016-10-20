@@ -32,12 +32,12 @@
    <scope>provided</scope>
   </dependency>
   <dependency>
-   <groupId>edu.unc.mapseq.distribution.mapseq-modules</groupId>
+   <groupId>edu.unc.mapseq.modules</groupId>
    <artifactId>mapseq-module-core</artifactId>
    <scope>provided</scope>
   </dependency>
   <dependency>
-   <groupId>edu.unc.mapseq.distribution.mapseq-modules</groupId>
+   <groupId>edu.unc.mapseq.modules</groupId>
    <artifactId>mapseq-module-sequencing</artifactId>
    <scope>provided</scope>
   </dependency>  
