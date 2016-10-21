@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>edu.unc.mapseq.pipelines</groupId>
   <artifactId>berg-mips-alignment</artifactId>
-  <version>0.6.13</version>
+  <version>0.6.14-SNAPSHOT</version>
   <packaging>pom</packaging>
   <url>https://jdr0887.github.io/MaPSeq-Pipeline-BergMIPs-Alignment</url>
   <organization>
@@ -31,7 +31,7 @@
     <url>https://github.com/jdr0887/MaPSeq-Pipeline-BergMIPs-Alignment</url>
     <developerConnection>scm:git:git@github.com:jdr0887/MaPSeq-Pipeline-BergMIPs-Alignment.git</developerConnection>
     <connection>scm:git:git@github.com:jdr0887/MaPSeq-Pipeline-BergMIPs-Alignment.git</connection>
-    <tag>berg-mips-alignment-0.6.13</tag>
+    <tag>HEAD</tag>
   </scm>
   <dependencyManagement>
     <dependencies>
@@ -43,12 +43,12 @@
       <dependency>
 	<groupId>edu.unc.mapseq.pipelines.berg-mips-alignment</groupId>
 	<artifactId>berg-mips-alignment-commons</artifactId>
-	<version>0.6.13</version>
+	<version>0.6.14-SNAPSHOT</version>
       </dependency>
       <dependency>
       	<groupId>edu.unc.mapseq.pipelines.berg-mips-alignment</groupId>
       	<artifactId>berg-mips-alignment-workflow</artifactId>
-      	<version>0.6.13</version>
+      	<version>0.6.14-SNAPSHOT</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
