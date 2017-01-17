@@ -2,13 +2,13 @@
  <parent>
   <groupId>edu.unc.mapseq.pipelines</groupId>
   <artifactId>berg-mips-alignment</artifactId>
-  <version>0.6.19</version>
+  <version>0.6.20-SNAPSHOT</version>
  </parent>
  <name>MaPSeq :: Pipelines :: BergMIPs :: Alignment :: Commons</name>
  <modelVersion>4.0.0</modelVersion>
  <groupId>edu.unc.mapseq.pipelines.berg-mips-alignment</groupId>
  <artifactId>berg-mips-alignment-commons</artifactId>
- <version>0.6.19</version>
+ <version>0.6.20-SNAPSHOT</version>
  <packaging>bundle</packaging>
  <dependencies>
   <dependency>
